@@ -3,6 +3,8 @@
 import 'package:final_food_delivery/combined_widget/carousel_list.dart';
 import 'package:final_food_delivery/combined_widget/restaurant_list.dart';
 import 'package:final_food_delivery/models/carousel_model.dart';
+import 'package:final_food_delivery/screens/login_screen.dart';
+import 'package:final_food_delivery/screens/restaurant_dishes.dart';
 import 'package:flutter/material.dart';
 import '../models/restaurant_model.dart';
 import '../constants/colors.dart';
@@ -22,7 +24,7 @@ class _RestaurantScreenState extends State<RestaurantScreen> {
             'https://b.zmtcdn.com/data/o2_assets/d0bd7c9405ac87f6aa65e31fe55800941632716575.png'),
     CarouselModel(
         price: '\$15',
-        description: 'Delicious Cheese Pav Bhaji garlished with Onions',
+        description: 'Delicious Cheese Pav Bhaji garnished with Onions',
         url:
             'https://i0.wp.com/healthyvegrecipes.com/wp-content/uploads/2016/08/pb1.jpg'),
   ];
@@ -63,7 +65,12 @@ class _RestaurantScreenState extends State<RestaurantScreen> {
         backgroundColor: kBackground,
         elevation: 0,
         leading: IconButton(
-          onPressed: () {},
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => LoginScreen()),
+            );
+          },
           icon: Icon(
             Icons.location_on,
             color: kPrimaryColor,
