@@ -10,6 +10,13 @@ import '../models/restaurant_model.dart';
 import '../constants/colors.dart';
 
 class RestaurantScreen extends StatefulWidget {
+  static const String routeName = '/';
+  static Route route() {
+    return MaterialPageRoute(
+        builder: (_) => RestaurantScreen(),
+        settings: RouteSettings(name: routeName));
+  }
+
   @override
   _RestaurantScreenState createState() => _RestaurantScreenState();
 }
@@ -66,10 +73,7 @@ class _RestaurantScreenState extends State<RestaurantScreen> {
         elevation: 0,
         leading: IconButton(
           onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => LoginScreen()),
-            );
+            Navigator.pushNamed(context, '/location');
           },
           icon: Icon(
             Icons.location_on,

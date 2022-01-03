@@ -4,6 +4,8 @@ import 'package:final_food_delivery/screens/restaurant_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+import 'config/app_router.dart';
+
 void main() {
   runApp(MyApp());
 }
@@ -22,7 +24,8 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: RestaurantScreen(),
+      onGenerateRoute: AppRouter.onGenerateRoute,
+      initialRoute: RestaurantScreen.routeName,
     );
   }
 }
