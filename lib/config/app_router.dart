@@ -1,6 +1,8 @@
 // ignore_for_file: avoid_print, no_duplicate_case_values, prefer_const_constructors
 
+import 'package:final_food_delivery/models/restaurant_model.dart';
 import 'package:final_food_delivery/screens/location_screen.dart';
+import 'package:final_food_delivery/screens/restaurant_dishes.dart';
 import 'package:final_food_delivery/screens/restaurant_screen.dart';
 
 import 'package:flutter/cupertino.dart';
@@ -16,6 +18,9 @@ class AppRouter {
         return RestaurantScreen.route();
       case LocationScreen.routeName:
         return LocationScreen.route();
+      case RestaurantDishes.routeName:
+        return RestaurantDishes.route(
+            restaurant: settings.arguments as RestaurantModel);
       default:
         return _errorRoute();
     }

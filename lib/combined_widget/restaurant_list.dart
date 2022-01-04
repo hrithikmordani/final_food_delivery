@@ -12,6 +12,7 @@ class RestaurantList extends StatelessWidget {
     return Column(
       children: restaurants!
           .map((e) => RestaurantCard(
+                restaurant: e,
                 imageSource: e.imageSource,
                 name: e.name,
                 location: e.location,

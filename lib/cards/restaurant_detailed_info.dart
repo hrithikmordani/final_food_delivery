@@ -1,11 +1,13 @@
-// ignore_for_file: avoid_unnecessary_containers, prefer_const_constructors, prefer_const_literals_to_create_immutables
+// ignore_for_file: avoid_unnecessary_containers, prefer_const_constructors, prefer_const_literals_to_create_immutables, use_key_in_widget_constructors
 
 import 'package:final_food_delivery/constants/colors.dart';
+import 'package:final_food_delivery/models/restaurant_model.dart';
 import 'package:flutter/material.dart';
 import 'package:dotted_line/dotted_line.dart';
 
 class RestaurantDetailedInfo extends StatelessWidget {
-  const RestaurantDetailedInfo({Key? key}) : super(key: key);
+  RestaurantModel? restaurant;
+  RestaurantDetailedInfo({this.restaurant});
 
   @override
   Widget build(BuildContext context) {
@@ -14,21 +16,21 @@ class RestaurantDetailedInfo extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'Ritayu Frankie',
+            restaurant!.name!,
             style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
           ),
           SizedBox(
             height: 6,
           ),
           Text(
-            'Indian, Chinese',
+            restaurant!.cuisine!,
             style: TextStyle(fontSize: 18, color: kPrimaryColor),
           ),
           SizedBox(
             height: 6,
           ),
           Text(
-            'Malad West, Mumbai',
+            restaurant!.location!,
             style: TextStyle(color: Colors.grey[700], fontSize: 16),
           ),
           SizedBox(

@@ -1,22 +1,71 @@
-// ignore_for_file: prefer_const_constructors
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, use_key_in_widget_constructors
 
 import 'package:final_food_delivery/constants/colors.dart';
+import 'package:final_food_delivery/models/dish_model.dart';
 import 'package:flutter/material.dart';
 
 class FoodItemCard extends StatelessWidget {
-  const FoodItemCard({Key? key}) : super(key: key);
+  DishModel? dish;
+  FoodItemCard({this.dish});
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 40,
-      margin: EdgeInsets.all(25),
-      decoration: BoxDecoration(
-        color: kPrimaryColor,
-        borderRadius: BorderRadius.all(
-          Radius.circular(10),
+    return Column(
+      children: [
+        Container(
+          child:
+              Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
+            Column(
+              children: [
+                Text(
+                  dish!.dishName!,
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 16,
+                    height: 1.5,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                Text(
+                  dish!.dishContents!,
+                  style: TextStyle(
+                    color: Colors.grey,
+                    fontSize: 14,
+                    height: 1.5,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+              ],
+            ),
+            Text(
+              dish!.dishCost!.toString(),
+              style: TextStyle(
+                color: Colors.black,
+                fontSize: 16,
+                height: 1.5,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            IconButton(
+                onPressed: () {},
+                icon: Icon(Icons.add_circle),
+                iconSize: 30,
+                color: kPrimaryColor)
+          ]),
+          // margin: EdgeInsets.all(25),
+          decoration: BoxDecoration(
+            color: Colors.white,
+            // borderRadius: BorderRadius.all(
+            //   Radius.circular(10),
+            // ),
+          ),
         ),
-      ),
+        Container(
+          height: 1,
+          color: kPrimaryColor,
+          margin: EdgeInsets.all(10),
+        )
+      ],
     );
   }
 }

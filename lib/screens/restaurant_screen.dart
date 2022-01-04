@@ -1,8 +1,10 @@
-// ignore_for_file: use_key_in_widget_constructors, prefer_const_constructors
+// ignore_for_file: use_key_in_widget_constructors, prefer_const_constructors, unused_import
 
 import 'package:final_food_delivery/combined_widget/carousel_list.dart';
+import 'package:final_food_delivery/combined_widget/custom_bottom_navigation_bar.dart';
 import 'package:final_food_delivery/combined_widget/restaurant_list.dart';
 import 'package:final_food_delivery/models/carousel_model.dart';
+import 'package:final_food_delivery/models/dish_model.dart';
 import 'package:final_food_delivery/screens/login_screen.dart';
 import 'package:final_food_delivery/screens/restaurant_dishes.dart';
 import 'package:flutter/material.dart';
@@ -37,37 +39,78 @@ class _RestaurantScreenState extends State<RestaurantScreen> {
   ];
   final List<RestaurantModel> restaurants = [
     RestaurantModel(
-      name: "Vikram's Brownies",
-      cuisine: 'Brownies, Cakes & Pastries',
-      location: 'Thane, Maharahtra',
-      imageSource:
-          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQ2Ysubs12nHcFd7mezHzoeb7-bOA4zwvGVQ&usqp=CAU',
-    ),
+        id: 001,
+        name: "Vikram's Brownies",
+        cuisine: 'Brownies, Cakes & Pastries',
+        location: 'Thane, Maharahtra',
+        imageSource:
+            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQ2Ysubs12nHcFd7mezHzoeb7-bOA4zwvGVQ&usqp=CAU',
+        dishes: [
+          DishModel(
+              dishName: 'Red Velvet Pastry',
+              dishCost: 5,
+              dishContents: 'Red Velvet with cream cheese'),
+          DishModel(
+              dishName: 'Chocolate Walnut',
+              dishCost: 60,
+              dishContents: 'Brown Sugar, eggs, butter')
+        ]),
     RestaurantModel(
-      name: "Alekhya's Home Kitchen",
-      location: 'Andheri West, Mumbai',
-      cuisine: 'South Indian',
-      imageSource:
-          'https://b.zmtcdn.com/data/pictures/6/19719926/359745c22c6a159f70c09ea5df4b874e_o2_featured_v2.jpg?output-format=webp',
-    ),
+        id: 002,
+        name: "Alekhya's Home Kitchen",
+        location: 'Andheri West, Mumbai',
+        cuisine: 'South Indian',
+        imageSource:
+            'https://b.zmtcdn.com/data/pictures/6/19719926/359745c22c6a159f70c09ea5df4b874e_o2_featured_v2.jpg?output-format=webp',
+        dishes: [
+          DishModel(
+              dishName: 'Dosa',
+              dishCost: 25,
+              dishContents: 'Chana Dal, Basmati Rice, butter'),
+          DishModel(
+              dishName: 'Idli',
+              dishCost: 25,
+              dishContents: 'Chana Dal, Basmati Rice, butter')
+        ]),
     RestaurantModel(
-      name: 'Hrithik Momos',
-      location: 'Goregaon West, Mumbai',
-      cuisine: 'Nepalese',
-      imageSource:
-          'https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_508,h_320,c_fill/qumer4ntqsvvoymfmj4q',
-    ),
+        id: 003,
+        name: 'Hrithik Momos',
+        location: 'Goregaon West, Mumbai',
+        cuisine: 'Nepalese',
+        imageSource:
+            'https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_508,h_320,c_fill/qumer4ntqsvvoymfmj4q',
+        dishes: [
+          DishModel(
+              dishName: 'Chicken Momos',
+              dishCost: 20,
+              dishContents: 'Chicken, cabbage, spring onion'),
+          DishModel(
+              dishName: 'Paneer Momos',
+              dishCost: 15,
+              dishContents: 'Paneer, garlic, mix vegetables')
+        ]),
     RestaurantModel(
-      name: 'Ritayu Frankie',
-      location: 'Malad West, Mumbai',
-      cuisine: 'Fast food, Snacks',
-      imageSource:
-          'https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_508,h_320,c_fill/roi1brhsdccb0rqlun0z',
-    ),
+        id: 004,
+        name: 'Ritayu Frankie',
+        location: 'Malad West, Mumbai',
+        cuisine: 'Fast food, Snacks',
+        imageSource:
+            'https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_508,h_320,c_fill/roi1brhsdccb0rqlun0z',
+        dishes: [
+          DishModel(
+              dishName: 'Veg Frankie',
+              dishCost: 50,
+              dishContents: 'Potatoes, Onion, Capsicum'),
+          DishModel(
+              dishName: 'Paneer Frankie',
+              dishCost: 25,
+              dishContents: 'Paneer, Onion, Capsicum')
+        ]),
   ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      bottomNavigationBar: CustomBottomNavigationBar(),
       appBar: AppBar(
         backgroundColor: kBackground,
         elevation: 0,

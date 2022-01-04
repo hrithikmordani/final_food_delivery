@@ -1,31 +1,39 @@
-// ignore_for_file: use_key_in_widget_constructors, prefer_const_constructors, prefer_const_literals_to_create_immutables, must_be_immutable
+// ignore_for_file: use_key_in_widget_constructors, prefer_const_constructors, prefer_const_literals_to_create_immutables, must_be_immutable, unused_import
 
+import 'package:final_food_delivery/models/restaurant_model.dart';
 import 'package:final_food_delivery/screens/restaurant_dishes.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../constants/colors.dart';
 
 class RestaurantCard extends StatelessWidget {
-  void selectCategory(BuildContext ctx) {
-    Navigator.of(ctx).push(
-      MaterialPageRoute(
-        builder: (_) {
-          return RestaurantDishes();
-        },
-      ),
-    );
-  }
-
+  // void selectCategory(BuildContext ctx) {
+  //   Navigator.of(ctx).push(
+  //     MaterialPageRoute(
+  //       builder: (_) {
+  //         return RestaurantDishes();
+  //       },
+  //     ),
+  //   );
+  // }
+  RestaurantModel? restaurant;
   String? name;
   String? location;
   String? cuisine;
   String? imageSource;
-  RestaurantCard({this.name, this.location, this.cuisine, this.imageSource});
+  RestaurantCard(
+      {this.name,
+      this.location,
+      this.cuisine,
+      this.imageSource,
+      this.restaurant});
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () => {selectCategory(context)},
+      onTap: () => {
+        Navigator.pushNamed(context, '/restaurantDishes', arguments: restaurant)
+      },
       splashColor: kBackground,
       child: Column(
         children: [
