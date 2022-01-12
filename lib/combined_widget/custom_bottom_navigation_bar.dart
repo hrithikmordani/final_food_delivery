@@ -12,14 +12,27 @@ class CustomBottomNavigationBar extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
-          Container(
-            child: Icon(Icons.home, size: 25),
+          InkWell(
+            onTap: () {
+              Navigator.pushNamed(context, '/');
+            },
+            child: Container(
+              child: Icon(Icons.home, size: 25),
+            ),
           ),
-          Container(
-            child: Icon(Icons.shopping_basket_rounded, size: 25),
+          InkWell(
+            onTap: () {},
+            child: Container(
+              child: Icon(Icons.shopping_basket_rounded, size: 25),
+            ),
           ),
-          Container(
-            child: Icon(Icons.person, size: 25),
+          InkWell(
+            onTap: () {
+              Navigator.pushNamed(context, '/account');
+            },
+            child: Container(
+              child: Icon(Icons.person, size: 25),
+            ),
           ),
         ],
       ),

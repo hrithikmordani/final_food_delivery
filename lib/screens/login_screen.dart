@@ -1,17 +1,30 @@
+// ignore_for_file: prefer_const_constructors, sized_box_for_whitespace, avoid_print, use_key_in_widget_constructors, must_be_immutable
+
 import 'package:final_food_delivery/Components/alreadyhaveanaccountcheck.dart';
 import 'package:final_food_delivery/Components/background.dart';
 import 'package:final_food_delivery/Components/roundedinputfields.dart';
 import 'package:final_food_delivery/Components/roundedpasswordfields.dart';
+import 'package:final_food_delivery/config/auth_service.dart';
 import 'package:final_food_delivery/constants/colors.dart';
 import 'package:final_food_delivery/screens/forgot_password.dart';
 import 'package:final_food_delivery/screens/signup_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class LoginScreen extends StatelessWidget {
-  const LoginScreen({Key? key}) : super(key: key);
+  String? semail;
+  String? spassword;
+  static const String routeName = '/login';
+  static Route route() {
+    return MaterialPageRoute(
+        builder: (_) => LoginScreen(),
+        settings: RouteSettings(name: routeName));
+  }
+
   @override
   Widget build(BuildContext context) {
+    final authService = Provider.of<AuthService>(context);
     Size size = MediaQuery.of(context).size;
     return Material(
       child: Background(
@@ -29,16 +42,23 @@ class LoginScreen extends StatelessWidget {
                 style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 30,
-                    color: Colors.white),
+                    color: kPrimaryColor),
               ),
               SizedBox(
                 width: 100,
                 height: 50,
               ),
               //Image.asset("assets/images/foodimages.jpg",height: size.height * 0.45,),
-              RoundedInputFieldEmail(hintText: "Email", onChanged: (value) {}),
+              RoundedInputFieldEmail(
+                  hintText: "Email",
+                  onChanged: (value) {
+                    semail = value;
+                  }),
               RoundedPasswordField(
-                onChanged: (value) {},
+                onChanged: (value) {
+                  print(semail);
+                  spassword = value;
+                },
               ),
 
               GestureDetector(
@@ -93,7 +113,11 @@ class LoginScreen extends StatelessWidget {
                       padding:
                           EdgeInsets.symmetric(vertical: 20, horizontal: 40),
                       color: kPrimaryColor,
-                      onPressed: () {},
+                      onPressed: () async {
+                        await authService.signInWithEmailAndPassword(
+                            semail!, spassword!);
+                        Navigator.pushNamed(context, '/');
+                      },
                       child: Text('LOGIN',
                           style: TextStyle(color: Colors.white, fontSize: 15))),
                 ),

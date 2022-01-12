@@ -1,4 +1,6 @@
 // import 'package:final_food_delivery/screens/constants.dart';
+// ignore_for_file: prefer_const_constructors, sized_box_for_whitespace, deprecated_member_use
+
 import 'package:final_food_delivery/Components/background.dart';
 import 'package:final_food_delivery/constants/colors.dart';
 import 'package:final_food_delivery/screens/login_screen.dart';

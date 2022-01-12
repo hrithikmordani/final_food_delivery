@@ -1,19 +1,32 @@
+// ignore_for_file: prefer_const_constructors, sized_box_for_whitespace, deprecated_member_use, use_key_in_widget_constructors, must_be_immutable
+
 import 'package:final_food_delivery/Components/alreadyhaveanaccountcheck.dart';
 import 'package:final_food_delivery/Components/background.dart';
 import 'package:final_food_delivery/Components/ordivider.dart';
 import 'package:final_food_delivery/Components/roundedinputfields.dart';
 import 'package:final_food_delivery/Components/roundedpasswordfields.dart';
+import 'package:final_food_delivery/config/auth_service.dart';
 import 'package:final_food_delivery/constants/colors.dart';
 import 'package:final_food_delivery/screens/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_signin_button/flutter_signin_button.dart';
+import 'package:provider/provider.dart';
 
 class SignUpScreen extends StatelessWidget {
-  const SignUpScreen({Key? key}) : super(key: key);
+  static const String routeName = '/SignUp';
+  static Route route() {
+    return MaterialPageRoute(
+        builder: (_) => SignUpScreen(),
+        settings: RouteSettings(name: routeName));
+  }
+
+  String? semail;
+  String? spassword;
   static const IconData facebook =
       IconData(0xe255, fontFamily: 'MaterialIcons');
   @override
   Widget build(BuildContext context) {
+    final authService = Provider.of<AuthService>(context);
     Size size = MediaQuery.of(context).size;
     return Material(
       child: Background(
@@ -39,8 +52,14 @@ class SignUpScreen extends StatelessWidget {
               RoundedInputFieldName(hintText: "Name", onChanged: (value) {}),
               RoundedInputFieldContact(
                   hintText: "Contact Number", onChanged: (value) {}),
-              RoundedInputFieldEmail(hintText: "Email", onChanged: (value) {}),
-              RoundedPasswordField(onChanged: (value) {}),
+              RoundedInputFieldEmail(
+                  hintText: "Email",
+                  onChanged: (value) {
+                    semail = value;
+                  }),
+              RoundedPasswordField(onChanged: (value) {
+                spassword = value;
+              }),
               SizedBox(
                 width: 100,
                 height: 10,
@@ -52,7 +71,11 @@ class SignUpScreen extends StatelessWidget {
                   child: FlatButton(
                     padding: EdgeInsets.symmetric(vertical: 20, horizontal: 40),
                     color: kPrimaryColor,
-                    onPressed: () {},
+                    onPressed: () async {
+                      await authService.createUserWithEmailAndPassword(
+                          semail!, spassword!);
+                      Navigator.pushNamed(context, '/login');
+                    },
                     child: Text('SIGN UP',
                         style: TextStyle(color: Colors.white, fontSize: 15)),
                   ),
