@@ -1,13 +1,15 @@
-// ignore_for_file: use_key_in_widget_constructors, prefer_const_constructors, prefer_const_literals_to_create_immutables, avoid_unnecessary_containers, unused_import
+// ignore_for_file: use_key_in_widget_constructors, prefer_const_constructors, prefer_const_literals_to_create_immutables, avoid_unnecessary_containers, unused_import, non_constant_identifier_names
 
 import 'package:final_food_delivery/cards/food_item_card.dart';
 import 'package:final_food_delivery/cards/restaurant_detailed_info.dart';
 import 'package:final_food_delivery/combined_widget/all_dishes.dart';
 import 'package:final_food_delivery/combined_widget/custom_bottom_navigation_bar.dart';
+import 'package:final_food_delivery/config/cart_service.dart';
 import 'package:final_food_delivery/constants/colors.dart';
 import 'package:final_food_delivery/models/restaurant_model.dart';
 import 'package:flutter/material.dart';
 import '../combined_widget/custom_app_bar.dart';
+import 'package:get/get.dart';
 
 class RestaurantDishes extends StatefulWidget {
   static const String routeName = '/restaurantDishes';
@@ -25,6 +27,7 @@ class RestaurantDishes extends StatefulWidget {
 }
 
 class _RestaurantDishesState extends State<RestaurantDishes> {
+  final cartService = Get.put(CartService());
   @override
   Widget build(BuildContext context) {
     return Scaffold(

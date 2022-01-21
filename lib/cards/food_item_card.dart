@@ -1,10 +1,13 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, use_key_in_widget_constructors
 
+import 'package:final_food_delivery/config/cart_service.dart';
 import 'package:final_food_delivery/constants/colors.dart';
 import 'package:final_food_delivery/models/dish_model.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class FoodItemCard extends StatelessWidget {
+  final cartService = Get.put(CartService());
   DishModel? dish;
   FoodItemCard({this.dish});
 
@@ -47,7 +50,10 @@ class FoodItemCard extends StatelessWidget {
               ),
             ),
             IconButton(
-                onPressed: () {},
+                onPressed: () {
+                  cartService.addProduct(dish!);
+                  Navigator.pushNamed(context, '/cart');
+                },
                 icon: Icon(Icons.add_circle),
                 iconSize: 30,
                 color: kPrimaryColor)

@@ -2,6 +2,7 @@
 
 import 'package:final_food_delivery/models/restaurant_model.dart';
 import 'package:final_food_delivery/screens/account_screen.dart';
+import 'package:final_food_delivery/screens/cart_screen.dart';
 import 'package:final_food_delivery/screens/location_screen.dart';
 import 'package:final_food_delivery/screens/login_screen.dart';
 import 'package:final_food_delivery/screens/restaurant_dishes.dart';
@@ -29,9 +30,12 @@ class AppRouter {
         return RestaurantScreen.route();
       case LocationScreen.routeName:
         return LocationScreen.route();
+      case CartScreen.routeName:
+        return CartScreen.route();
       case RestaurantDishes.routeName:
         return RestaurantDishes.route(
             restaurant: settings.arguments as RestaurantModel);
+
       default:
         return _errorRoute();
     }

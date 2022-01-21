@@ -23,10 +23,10 @@ class RoundedInputFieldEmail extends StatelessWidget {
         decoration: InputDecoration(
           icon: Icon(
             Icons.email,
-            color: kPrimaryColor,
+            color: Colors.black,
           ),
           hintText: hintText,
-          hintStyle: TextStyle(color: kPrimaryColor),
+          hintStyle: TextStyle(color: Colors.black),
           border: InputBorder.none,
         ),
       ),
@@ -53,10 +53,10 @@ class RoundedInputFieldName extends StatelessWidget {
         decoration: InputDecoration(
           icon: Icon(
             Icons.person,
-            color: kPrimaryColor,
+            color: Colors.black,
           ),
           hintText: hintText,
-          hintStyle: TextStyle(color: kPrimaryColor),
+          hintStyle: TextStyle(color: Colors.black),
           border: InputBorder.none,
         ),
       ),
@@ -83,10 +83,10 @@ class RoundedInputFieldContact extends StatelessWidget {
         decoration: InputDecoration(
           icon: Icon(
             Icons.phone,
-            color: kPrimaryColor,
+            color: Colors.black,
           ),
           hintText: hintText,
-          hintStyle: TextStyle(color: kPrimaryColor),
+          hintStyle: TextStyle(color: Colors.black),
           border: InputBorder.none,
         ),
       ),

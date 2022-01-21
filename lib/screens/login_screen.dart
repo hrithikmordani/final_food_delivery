@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors, sized_box_for_whitespace, avoid_print, use_key_in_widget_constructors, must_be_immutable
+// ignore_for_file: prefer_const_constructors, sized_box_for_whitespace, avoid_print, use_key_in_widget_constructors, must_be_immutable, avoid_unnecessary_containers
 
 import 'package:final_food_delivery/Components/alreadyhaveanaccountcheck.dart';
 import 'package:final_food_delivery/Components/background.dart';
@@ -26,8 +26,10 @@ class LoginScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final authService = Provider.of<AuthService>(context);
     Size size = MediaQuery.of(context).size;
-    return Material(
-      child: Background(
+    return Scaffold(
+      backgroundColor: Colors.white,
+      body: Container(
+        margin: EdgeInsets.symmetric(horizontal: 40),
         child: SingleChildScrollView(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -36,12 +38,20 @@ class LoginScreen extends StatelessWidget {
                 width: 100,
                 height: 70,
               ),
+              Image(
+                  height: 200,
+                  width: 200,
+                  image: NetworkImage(
+                      'https://wallpaperaccess.com/full/629233.jpg')),
+              SizedBox(
+                height: 20,
+              ),
 
               Text(
-                "Login",
+                "Home Food Delivered to your doorstep",
                 style: TextStyle(
                     fontWeight: FontWeight.bold,
-                    fontSize: 30,
+                    fontSize: 18,
                     color: kPrimaryColor),
               ),
               SizedBox(
@@ -60,49 +70,61 @@ class LoginScreen extends StatelessWidget {
                   spassword = value;
                 },
               ),
+              SizedBox(
+                height: 10,
+              ),
 
-              GestureDetector(
-                  child: Text(
-                    'Forgot Password?',
-                    textAlign: TextAlign.left,
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 14,
-                      decoration: TextDecoration.underline,
-                      decorationThickness: 1,
-                    ),
-                  ),
-                  onTap: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => ForgotPasswordScreen()));
-                  }),
+              Container(
+                margin: EdgeInsets.only(right: 10),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    GestureDetector(
+                        child: Text(
+                          'Forgot Password?',
+                          textAlign: TextAlign.right,
+                          style: TextStyle(
+                            color: Colors.grey,
+                            fontSize: 18,
+                            // decoration: TextDecoration.underline,
+                            decorationThickness: 1,
+                          ),
+                        ),
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      ForgotPasswordScreen()));
+                        }),
+                  ],
+                ),
+              ),
 
               SizedBox(
                 height: 10,
               ),
-              GestureDetector(
-                  child: Text(
-                    'Don\'t have an account? Sign up ',
-                    textAlign: TextAlign.left,
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 14,
-                      decoration: TextDecoration.underline,
-                      decorationThickness: 1,
-                    ),
-                  ),
-                  onTap: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => SignUpScreen()));
-                  }),
+              // GestureDetector(
+              //     child: Text(
+              //       'Don\'t have an account? Sign up ',
+              //       textAlign: TextAlign.left,
+              //       style: TextStyle(
+              //         color: Colors.black,
+              //         fontSize: 14,
+              //         // decoration: TextDecoration.underline,
+              //         decorationThickness: 1,
+              //       ),
+              //     ),
+              //     onTap: () {
+              //       Navigator.push(
+              //           context,
+              //           MaterialPageRoute(
+              //               builder: (context) => SignUpScreen()));
+              //     }),
 
               SizedBox(
                 width: 100,
-                height: 30,
+                height: 10,
               ),
 
               Container(
@@ -131,7 +153,25 @@ class LoginScreen extends StatelessWidget {
                   Navigator.push(context,
                       MaterialPageRoute(builder: (context) => SignUpScreen()));
                 },
-              )
+              ),
+              SizedBox(height: 25),
+              GestureDetector(
+                  child: Text(
+                    'Don\'t have an account? Sign up ',
+                    textAlign: TextAlign.left,
+                    style: TextStyle(
+                      color: Colors.grey,
+                      fontSize: 18,
+                      // decoration: TextDecoration.underline,
+                      decorationThickness: 1,
+                    ),
+                  ),
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => SignUpScreen()));
+                  }),
             ],
           ),
         ),

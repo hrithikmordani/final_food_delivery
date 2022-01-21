@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
 
 class OrDivider extends StatelessWidget {
@@ -15,7 +17,7 @@ class OrDivider extends StatelessWidget {
             child: Text(
               "OR",
               style:
-                  TextStyle(color: Colors.white, fontWeight: FontWeight.w600),
+                  TextStyle(color: Colors.black, fontWeight: FontWeight.w600),
             ),
           ),
           buildDivider()
@@ -26,7 +28,7 @@ class OrDivider extends StatelessWidget {
 
   Expanded buildDivider() => Expanded(
         child: Divider(
-          color: Color(0xFFD9D9D9),
+          color: Colors.black,
           height: 1.5,
         ),
       );

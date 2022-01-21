@@ -26,7 +26,7 @@ class LocationScreen extends StatelessWidget {
             child: GoogleMap(
               myLocationEnabled: true,
               initialCameraPosition:
-                  CameraPosition(target: LatLng(10, 10), zoom: 2),
+                  CameraPosition(target: LatLng(19.0596, 72.8395), zoom: 15),
             ),
           ),
           Positioned(top: 40, left: 20, right: 20, child: LocationSearchBox()),

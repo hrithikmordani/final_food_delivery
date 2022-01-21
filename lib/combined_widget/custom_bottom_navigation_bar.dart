@@ -21,7 +21,9 @@ class CustomBottomNavigationBar extends StatelessWidget {
             ),
           ),
           InkWell(
-            onTap: () {},
+            onTap: () {
+              Navigator.pushNamed(context, '/cart');
+            },
             child: Container(
               child: Icon(Icons.shopping_basket_rounded, size: 25),
             ),

@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors, sized_box_for_whitespace, deprecated_member_use, use_key_in_widget_constructors, must_be_immutable
+// ignore_for_file: prefer_const_constructors, sized_box_for_whitespace, deprecated_member_use, use_key_in_widget_constructors, must_be_immutable, avoid_unnecessary_containers
 
 import 'package:final_food_delivery/Components/alreadyhaveanaccountcheck.dart';
 import 'package:final_food_delivery/Components/background.dart';
@@ -28,22 +28,23 @@ class SignUpScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final authService = Provider.of<AuthService>(context);
     Size size = MediaQuery.of(context).size;
-    return Material(
-      child: Background(
+    return Scaffold(
+      body: Container(
+        color: Colors.white,
         child: SingleChildScrollView(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               SizedBox(
                 width: 100,
-                height: 10,
+                height: 40,
               ),
               Text(
                 "SignUp",
                 style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 30,
-                    color: Colors.white),
+                    color: Colors.black),
               ),
               SizedBox(
                 width: 100,
@@ -82,7 +83,7 @@ class SignUpScreen extends StatelessWidget {
                 ),
               ),
               SizedBox(
-                height: 10,
+                height: 20,
               ),
               GestureDetector(
                   child: Text(
@@ -90,8 +91,8 @@ class SignUpScreen extends StatelessWidget {
                     textAlign: TextAlign.left,
                     style: TextStyle(
                       color: Colors.black,
-                      fontSize: 14,
-                      decoration: TextDecoration.underline,
+                      fontSize: 18,
+                      // decoration: TextDecoration.underline,
                       decorationThickness: 1,
                     ),
                   ),
@@ -100,8 +101,8 @@ class SignUpScreen extends StatelessWidget {
                         MaterialPageRoute(builder: (context) => LoginScreen()));
                   }),
               SizedBox(
-                width: 100,
-                height: 18,
+                width: 50,
+                height: 20,
               ),
               AlreadyHaveAnAccountCheck(
                 login: false,
