@@ -33,6 +33,21 @@ class AuthService {
     return _userFromFirebase(credential.user);
   }
 
+  Future<Map<String, dynamic>> getData(userId) async {
+    DocumentSnapshot documentSnapshot = await usersdatabase.doc(userId).get();
+    final Map<String, dynamic> data =
+        documentSnapshot.data() as Map<String, dynamic>;
+    return data;
+  }
+
+  Future<void> addToCartInDatabase(cart, cartList, userId) {
+    return usersdatabase
+        .doc(userId)
+        .update({'cart': cart, 'cartList': cartList})
+        .then((value) => print("User Updated"))
+        .catchError((error) => print("Failed to update user: $error"));
+  }
+
   Future<User?> createUserWithEmailAndPassword(
       String email, String password, String contact, String name) async {
     final credential = await _firebaseAuth.createUserWithEmailAndPassword(

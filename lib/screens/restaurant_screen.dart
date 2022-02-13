@@ -47,14 +47,20 @@ class _RestaurantScreenState extends State<RestaurantScreen> {
             'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQ2Ysubs12nHcFd7mezHzoeb7-bOA4zwvGVQ&usqp=CAU',
         dishes: [
           DishModel(
+              dishId: '001',
+              restaurantId: '001',
               dishName: 'Red Velvet Pastry',
               dishCost: 5,
               dishContents: 'Red Velvet with cream cheese'),
           DishModel(
+              dishId: '002',
+              restaurantId: '001',
               dishName: 'Chocolate Walnut',
               dishCost: 60,
               dishContents: 'Brown Sugar, eggs, butter'),
           DishModel(
+              dishId: '003',
+              restaurantId: '001',
               dishName: 'Pineapple',
               dishCost: 60,
               dishContents: 'Brown Sugar, eggs, butter')
@@ -68,10 +74,14 @@ class _RestaurantScreenState extends State<RestaurantScreen> {
             'https://b.zmtcdn.com/data/pictures/6/19719926/359745c22c6a159f70c09ea5df4b874e_o2_featured_v2.jpg?output-format=webp',
         dishes: [
           DishModel(
+              dishId: '001',
+              restaurantId: '002',
               dishName: 'Dosa',
               dishCost: 25,
               dishContents: 'Chana Dal, Basmati Rice, butter'),
           DishModel(
+              dishId: '002',
+              restaurantId: '002',
               dishName: 'Idli',
               dishCost: 25,
               dishContents: 'Chana Dal, Basmati Rice, butter')
@@ -85,10 +95,14 @@ class _RestaurantScreenState extends State<RestaurantScreen> {
             'https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_508,h_320,c_fill/qumer4ntqsvvoymfmj4q',
         dishes: [
           DishModel(
+              dishId: '001',
+              restaurantId: '003',
               dishName: 'Chicken Momos',
               dishCost: 20,
               dishContents: 'Chicken, cabbage, spring onion'),
           DishModel(
+              dishId: '002',
+              restaurantId: '003',
               dishName: 'Paneer Momos',
               dishCost: 15,
               dishContents: 'Paneer, garlic, mix vegetables')
@@ -102,10 +116,14 @@ class _RestaurantScreenState extends State<RestaurantScreen> {
             'https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_508,h_320,c_fill/roi1brhsdccb0rqlun0z',
         dishes: [
           DishModel(
+              dishId: '001',
+              restaurantId: '004',
               dishName: 'Veg Frankie',
               dishCost: 50,
               dishContents: 'Potatoes, Onion, Capsicum'),
           DishModel(
+              dishId: '002',
+              restaurantId: '004',
               dishName: 'Paneer Frankie',
               dishCost: 25,
               dishContents: 'Paneer, Onion, Capsicum')

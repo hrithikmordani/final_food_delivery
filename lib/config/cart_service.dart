@@ -5,12 +5,13 @@ import 'package:final_food_delivery/models/dish_model.dart';
 import 'package:get/get.dart';
 
 class CartService extends GetxController {
-  var cart = {}.obs;
-  void addProduct(DishModel dish) {
-    if (cart.containsKey(dish)) {
-      cart[dish] += 1;
+  Map<String, dynamic> addProduct(DishModel dish, cart, cartList, userId) {
+    if (cart.containsKey(dish.dishName)) {
+      cart[dish.dishName] += 1;
     } else {
-      cart[dish] = 1;
+      cart[dish.dishName] = 1;
+      cartList.add(dish.dishId);
     }
+    return {'cart': cart, 'cartList': cartList};
   }
 }

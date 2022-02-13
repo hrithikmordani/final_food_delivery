@@ -1,10 +1,12 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, use_key_in_widget_constructors
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, use_key_in_widget_constructors, avoid_print
 
+import 'package:final_food_delivery/config/auth_service.dart';
 import 'package:final_food_delivery/config/cart_service.dart';
 import 'package:final_food_delivery/constants/colors.dart';
 import 'package:final_food_delivery/models/dish_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:provider/provider.dart';
 
 class FoodItemCard extends StatelessWidget {
   final cartService = Get.put(CartService());
@@ -13,6 +15,8 @@ class FoodItemCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final authService = Provider.of<AuthService>(context);
+    String userId = authService.getUserId();
     return Column(
       children: [
         Container(
@@ -50,8 +54,15 @@ class FoodItemCard extends StatelessWidget {
               ),
             ),
             IconButton(
-                onPressed: () {
-                  cartService.addProduct(dish!);
+                onPressed: () async {
+                  final data = await authService.getData(userId);
+                  print(data);
+
+                  final addedCart = cartService.addProduct(
+                      dish!, data['cart'], data['cartList'], userId);
+                  print(addedCart);
+                  await authService.addToCartInDatabase(
+                      addedCart['cart'], addedCart['cartList'], userId);
                   Navigator.pushNamed(context, '/cart');
                 },
                 icon: Icon(Icons.add_circle),
