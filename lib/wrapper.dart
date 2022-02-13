@@ -2,7 +2,8 @@
 
 import 'package:final_food_delivery/config/auth_service.dart';
 import 'package:final_food_delivery/models/user_model.dart';
-import 'package:final_food_delivery/screens/login_screen.dart';
+
+import 'package:final_food_delivery/screens/new_login_screen.dart';
 import 'package:final_food_delivery/screens/restaurant_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -23,7 +24,7 @@ class Wrapper extends StatelessWidget {
       builder: (_, AsyncSnapshot<User?> snapshot) {
         if (snapshot.connectionState == ConnectionState.active) {
           final User? user = snapshot.data;
-          return user == null ? LoginScreen() : RestaurantScreen();
+          return user == null ? LoginScreenNew() : RestaurantScreen();
         } else {
           return Scaffold(
             body: Center(

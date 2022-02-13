@@ -5,7 +5,7 @@ import 'package:final_food_delivery/combined_widget/custom_bottom_navigation_bar
 import 'package:final_food_delivery/combined_widget/restaurant_list.dart';
 import 'package:final_food_delivery/models/carousel_model.dart';
 import 'package:final_food_delivery/models/dish_model.dart';
-import 'package:final_food_delivery/screens/login_screen.dart';
+
 import 'package:final_food_delivery/screens/restaurant_dishes.dart';
 import 'package:flutter/material.dart';
 import '../models/restaurant_model.dart';
@@ -52,6 +52,10 @@ class _RestaurantScreenState extends State<RestaurantScreen> {
               dishContents: 'Red Velvet with cream cheese'),
           DishModel(
               dishName: 'Chocolate Walnut',
+              dishCost: 60,
+              dishContents: 'Brown Sugar, eggs, butter'),
+          DishModel(
+              dishName: 'Pineapple',
               dishCost: 60,
               dishContents: 'Brown Sugar, eggs, butter')
         ]),

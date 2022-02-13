@@ -4,10 +4,11 @@ import 'package:final_food_delivery/models/restaurant_model.dart';
 import 'package:final_food_delivery/screens/account_screen.dart';
 import 'package:final_food_delivery/screens/cart_screen.dart';
 import 'package:final_food_delivery/screens/location_screen.dart';
-import 'package:final_food_delivery/screens/login_screen.dart';
+
+import 'package:final_food_delivery/screens/new_login_screen.dart';
+import 'package:final_food_delivery/screens/new_registration_screen.dart';
 import 'package:final_food_delivery/screens/restaurant_dishes.dart';
 import 'package:final_food_delivery/screens/restaurant_screen.dart';
-import 'package:final_food_delivery/screens/signup_screen.dart';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -20,12 +21,12 @@ class AppRouter {
     switch (settings.name) {
       case '/':
         return Wrapper.route();
-      case LoginScreen.routeName:
-        return LoginScreen.route();
+      case LoginScreenNew.routeName:
+        return LoginScreenNew.route();
       case AccountScreen.routeName:
         return AccountScreen.route();
-      case SignUpScreen.routeName:
-        return SignUpScreen.route();
+      case RegistrationScreenNew.routeName:
+        return RegistrationScreenNew.route();
       case Wrapper.routeName:
         return RestaurantScreen.route();
       case LocationScreen.routeName:

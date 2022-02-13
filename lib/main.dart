@@ -2,7 +2,7 @@
 
 import 'package:final_food_delivery/config/auth_service.dart';
 import 'package:final_food_delivery/screens/restaurant_screen.dart';
-import 'package:final_food_delivery/screens/signup_screen.dart';
+
 import 'package:final_food_delivery/wrapper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';

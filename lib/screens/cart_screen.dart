@@ -1,12 +1,13 @@
 // ignore_for_file: use_key_in_widget_constructors, prefer_const_literals_to_create_immutables, avoid_unnecessary_containers, prefer_const_constructors, sized_box_for_whitespace
 
+import 'package:final_food_delivery/cards/cart_item_card.dart';
+import 'package:final_food_delivery/cards/restaurant_cart_card.dart';
 import 'package:final_food_delivery/constants/colors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
-import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 
 class CartScreen extends StatefulWidget {
   static const String routeName = '/cart';
@@ -35,107 +36,12 @@ class _CartScreenState extends State<CartScreen> {
               SizedBox(
                 height: 20,
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Container(
-                    width: 120,
-                    margin: EdgeInsets.only(left: 20, right: 20),
-                    child: Image(
-                      image: NetworkImage(
-                          'https://b.zmtcdn.com/data/pictures/6/19719926/359745c22c6a159f70c09ea5df4b874e_o2_featured_v2.jpg?output-format=webp'),
-                    ),
-                  ),
-                  Container(
-                    margin: EdgeInsets.only(left: 10),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          'Vikram Brownies',
-                          style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 16,
-                              height: 1.5,
-                              fontWeight: FontWeight.bold),
-                        ),
-                        Text(
-                          'Thane, Maharashtra',
-                          style:
-                              TextStyle(color: Colors.grey[700], fontSize: 15),
-                        ),
-                      ],
-                    ),
-                  )
-                ],
-              ),
+              RestauratnCartCard(),
               SizedBox(
                 height: 20,
               ),
-              Container(
-                margin: EdgeInsets.only(left: 20, right: 20),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      'Red Velvet Pastry',
-                      style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold),
-                    ),
-                    Container(
-                      child: Row(
-                        children: [
-                          IconButton(
-                              onPressed: () {}, icon: Icon(Icons.remove)),
-                          Text(
-                            '1',
-                            style: TextStyle(fontSize: 16),
-                          ),
-                          IconButton(onPressed: () {}, icon: Icon(Icons.add))
-                        ],
-                      ),
-                    ),
-                    Text(
-                      'Rs 150',
-                      style: TextStyle(fontSize: 16),
-                    )
-                  ],
-                ),
-              ),
-              Container(
-                margin: EdgeInsets.only(left: 20, right: 20),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      'Blueberry Cupcake',
-                      style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold),
-                    ),
-                    Container(
-                      child: Row(
-                        children: [
-                          IconButton(
-                              onPressed: () {}, icon: Icon(Icons.remove)),
-                          Text(
-                            '1',
-                            style: TextStyle(fontSize: 16),
-                          ),
-                          IconButton(onPressed: () {}, icon: Icon(Icons.add))
-                        ],
-                      ),
-                    ),
-                    Text(
-                      'Rs 200',
-                      style: TextStyle(fontSize: 16),
-                    )
-                  ],
-                ),
-              ),
+              CartItemCard(),
+              CartItemCard(),
               SizedBox(
                 height: 15,
               ),
