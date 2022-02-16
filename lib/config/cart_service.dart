@@ -10,7 +10,7 @@ class CartService extends GetxController {
       cart[dish.dishName] += 1;
     } else {
       cart[dish.dishName] = 1;
-      cartList.add(dish.dishId);
+      cartList.add(dish.dishName);
     }
     return {'cart': cart, 'cartList': cartList};
   }

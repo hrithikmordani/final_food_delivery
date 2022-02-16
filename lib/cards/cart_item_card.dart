@@ -1,9 +1,11 @@
-// ignore_for_file: prefer_const_constructors, avoid_unnecessary_containers
+// ignore_for_file: prefer_const_constructors, avoid_unnecessary_containers, use_key_in_widget_constructors
 
 import 'package:flutter/material.dart';
 
 class CartItemCard extends StatelessWidget {
-  const CartItemCard({Key? key}) : super(key: key);
+  String? itemName;
+  num? quantity;
+  CartItemCard({this.itemName, this.quantity});
 
   @override
   Widget build(BuildContext context) {
@@ -12,26 +14,33 @@ class CartItemCard extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Text(
-            'Red Velvet Pastry',
-            style: TextStyle(
-                color: Colors.black, fontSize: 16, fontWeight: FontWeight.bold),
+          Container(
+            width: 150,
+            child: Text(
+              itemName!,
+              style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold),
+            ),
           ),
           Container(
             child: Row(
               children: [
                 IconButton(onPressed: () {}, icon: Icon(Icons.remove)),
                 Text(
-                  '1',
+                  quantity!.toString(),
                   style: TextStyle(fontSize: 16),
                 ),
                 IconButton(onPressed: () {}, icon: Icon(Icons.add))
               ],
             ),
           ),
-          Text(
-            'Rs 150',
-            style: TextStyle(fontSize: 16),
+          Container(
+            child: Text(
+              'Rs 150',
+              style: TextStyle(fontSize: 16),
+            ),
           )
         ],
       ),

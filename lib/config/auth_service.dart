@@ -55,7 +55,13 @@ class AuthService {
     User id = _userFromFirebase(credential.user)!;
     await usersdatabase
         .doc(id.uid)
-        .set({'email': email, 'name': name, 'contact': contact})
+        .set({
+          'email': email,
+          'name': name,
+          'contact': contact,
+          'cart': {},
+          'cartList': []
+        })
         .then((value) => print('user added'))
         .catchError((error) => print('failed to add user: $error'));
 
