@@ -2,8 +2,8 @@
 
 import 'package:flutter/material.dart';
 
-class RestauratnCartCard extends StatelessWidget {
-  const RestauratnCartCard({Key? key}) : super(key: key);
+class RestaurantCartCard extends StatelessWidget {
+  const RestaurantCartCard({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

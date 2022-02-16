@@ -40,12 +40,35 @@ class AuthService {
     return data;
   }
 
+  Future<void> increaseQuantity(cart, userId, itemName) {
+    cart[itemName] = cart[itemName] + 1;
+    return usersdatabase
+        .doc(userId)
+        .update({'cart': cart})
+        .then((value) => print("User Updated"))
+        .catchError((error) => print("Failed to update user: $error"));
+  }
+
   Future<void> addToCartInDatabase(cart, cartList, userId) {
     return usersdatabase
         .doc(userId)
         .update({'cart': cart, 'cartList': cartList})
         .then((value) => print("User Updated"))
         .catchError((error) => print("Failed to update user: $error"));
+  }
+
+  Future<void> removeFromDatabase(cart, cartList, itemName, userId) {
+    if (cart[itemName] > 1) {
+      cart[itemName] = cart[itemName] - 1;
+    } else {
+      cartList.remove(itemName);
+      cart.remove(itemName);
+    }
+    return usersdatabase
+        .doc(userId)
+        .update({'cart': cart, 'cartList': cartList})
+        .then((value) => print('user updated'))
+        .catchError((error) => print('error'));
   }
 
   Future<User?> createUserWithEmailAndPassword(

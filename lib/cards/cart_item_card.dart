@@ -1,6 +1,8 @@
 // ignore_for_file: prefer_const_constructors, avoid_unnecessary_containers, use_key_in_widget_constructors
 
 import 'package:flutter/material.dart';
+import 'package:final_food_delivery/config/auth_service.dart';
+import 'package:provider/provider.dart';
 
 class CartItemCard extends StatelessWidget {
   String? itemName;
@@ -9,6 +11,8 @@ class CartItemCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final authService = Provider.of<AuthService>(context);
+    final userId = authService.getUserId();
     return Container(
       margin: EdgeInsets.only(left: 20, right: 20),
       child: Row(
@@ -27,12 +31,24 @@ class CartItemCard extends StatelessWidget {
           Container(
             child: Row(
               children: [
-                IconButton(onPressed: () {}, icon: Icon(Icons.remove)),
+                IconButton(
+                    onPressed: () async {
+                      final data = await authService.getData(userId);
+                      authService.removeFromDatabase(
+                          data['cart'], data['cartList'], itemName, userId);
+                    },
+                    icon: Icon(Icons.remove)),
                 Text(
                   quantity!.toString(),
                   style: TextStyle(fontSize: 16),
                 ),
-                IconButton(onPressed: () {}, icon: Icon(Icons.add))
+                IconButton(
+                    onPressed: () async {
+                      final data = await authService.getData(userId);
+                      authService.increaseQuantity(
+                          data['cart'], userId, itemName);
+                    },
+                    icon: Icon(Icons.add))
               ],
             ),
           ),

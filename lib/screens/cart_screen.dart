@@ -38,7 +38,7 @@ class _CartScreenState extends State<CartScreen> {
                 SizedBox(
                   height: 20,
                 ),
-                RestauratnCartCard(),
+                RestaurantCartCard(),
                 SizedBox(
                   height: 20,
                 ),
