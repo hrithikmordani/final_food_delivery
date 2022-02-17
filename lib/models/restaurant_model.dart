@@ -6,7 +6,8 @@ class RestaurantModel {
   String? location;
   String? cuisine;
   String? imageSource;
-  List<DishModel>? dishes;
+  List<dynamic>? dishes;
+
   RestaurantModel(
       {this.id,
       this.name,
@@ -14,4 +15,14 @@ class RestaurantModel {
       this.cuisine,
       this.imageSource,
       this.dishes});
+  Map<String, dynamic> toMap() {
+    return {
+      'id': id,
+      'name': name,
+      'location': location,
+      'cuisine': cuisine,
+      'imageSource': imageSource,
+      'dishes': dishes
+    };
+  }
 }

@@ -10,4 +10,14 @@ class DishModel {
       this.dishName,
       this.dishCost,
       this.dishContents});
+
+  Map<String, dynamic> toMap() {
+    return {
+      'restaurantId': restaurantId,
+      'dishId': dishId,
+      'dishName': dishName,
+      'dishCost': dishCost,
+      'dishContents': dishContents,
+    };
+  }
 }

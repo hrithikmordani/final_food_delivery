@@ -57,16 +57,30 @@ class AuthService {
         .catchError((error) => print("Failed to update user: $error"));
   }
 
-  Future<void> removeFromDatabase(cart, cartList, itemName, userId) {
+  Future<void> addToCartInDatabaseWithRestaurant(
+      cart, cartList, userId, restaurantmap) {
+    return usersdatabase
+        .doc(userId)
+        .update(
+            {'cart': cart, 'cartList': cartList, 'restaurant': restaurantmap})
+        .then((value) => print("User Updated"))
+        .catchError((error) => print("Failed to update user: $error"));
+  }
+
+  Future<void> removeFromDatabase(
+      cart, cartList, itemName, userId, restaurant) {
     if (cart[itemName] > 1) {
       cart[itemName] = cart[itemName] - 1;
     } else {
       cartList.remove(itemName);
       cart.remove(itemName);
+      if (cartList.length == 0) {
+        restaurant = [];
+      }
     }
     return usersdatabase
         .doc(userId)
-        .update({'cart': cart, 'cartList': cartList})
+        .update({'cart': cart, 'cartList': cartList, 'restaurant': restaurant})
         .then((value) => print('user updated'))
         .catchError((error) => print('error'));
   }
@@ -83,7 +97,8 @@ class AuthService {
           'name': name,
           'contact': contact,
           'cart': {},
-          'cartList': []
+          'cartList': [],
+          'restaurant': [],
         })
         .then((value) => print('user added'))
         .catchError((error) => print('failed to add user: $error'));

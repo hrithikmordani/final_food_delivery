@@ -72,6 +72,7 @@ class _RestaurantDishesState extends State<RestaurantDishes> {
               height: 5,
             ),
             AllDishes(
+              restaurant: widget.restaurant!,
               dishes: widget.restaurant!.dishes!,
             ),
           ],

@@ -35,7 +35,12 @@ class CartItemCard extends StatelessWidget {
                     onPressed: () async {
                       final data = await authService.getData(userId);
                       authService.removeFromDatabase(
-                          data['cart'], data['cartList'], itemName, userId);
+                        data['cart'],
+                        data['cartList'],
+                        itemName,
+                        userId,
+                        data['restaurant'],
+                      );
                     },
                     icon: Icon(Icons.remove)),
                 Text(
