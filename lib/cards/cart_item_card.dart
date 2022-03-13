@@ -6,8 +6,9 @@ import 'package:provider/provider.dart';
 
 class CartItemCard extends StatelessWidget {
   String? itemName;
+  num? cartCost;
   num? quantity;
-  CartItemCard({this.itemName, this.quantity});
+  CartItemCard({this.itemName, this.quantity, this.cartCost});
 
   @override
   Widget build(BuildContext context) {
@@ -40,6 +41,8 @@ class CartItemCard extends StatelessWidget {
                         itemName,
                         userId,
                         data['restaurant'],
+                        data['cartCost'],
+                        cartCost,
                       );
                     },
                     icon: Icon(Icons.remove)),
@@ -50,8 +53,8 @@ class CartItemCard extends StatelessWidget {
                 IconButton(
                     onPressed: () async {
                       final data = await authService.getData(userId);
-                      authService.increaseQuantity(
-                          data['cart'], userId, itemName);
+                      authService.increaseQuantity(data['cart'], userId,
+                          itemName, cartCost, data['cartCost']);
                     },
                     icon: Icon(Icons.add))
               ],
@@ -59,7 +62,7 @@ class CartItemCard extends StatelessWidget {
           ),
           Container(
             child: Text(
-              'Rs 150',
+              'Rs ' + cartCost!.toString(),
               style: TextStyle(fontSize: 16),
             ),
           )

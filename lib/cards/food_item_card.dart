@@ -16,6 +16,7 @@ class FoodItemCard extends StatelessWidget {
 
   RestaurantModel? restaurant;
   List<dynamic>? dishesmap;
+
   FoodItemCard({this.dish, this.restaurant, this.dishesmap});
 
   @override
@@ -71,10 +72,14 @@ class FoodItemCard extends StatelessWidget {
                         restaurantmap['name']) {
                       print('I am here 1');
                       final addedCart = cartService.addProduct(
-                          dish!, data['cart'], data['cartList'], userId);
+                          dish!,
+                          data['cart'],
+                          data['cartList'],
+                          data['cartCost'],
+                          userId);
                       print(addedCart);
-                      await authService.addToCartInDatabase(
-                          addedCart['cart'], addedCart['cartList'], userId);
+                      await authService.addToCartInDatabase(addedCart['cart'],
+                          addedCart['cartList'], addedCart['cartCost'], userId);
                     } else {
                       print('I am here 2');
                       Fluttertoast.showToast(
@@ -82,9 +87,10 @@ class FoodItemCard extends StatelessWidget {
                               'You can only order from 1 restaurant at a time. Cart cleared');
 
                       final addedCart =
-                          cartService.addProduct(dish!, {}, [], userId);
+                          cartService.addProduct(dish!, {}, [], {}, userId);
                       print(addedCart);
                       await authService.addToCartInDatabaseWithRestaurant(
+                          addedCart['cartCost'],
                           addedCart['cart'],
                           addedCart['cartList'],
                           userId,
@@ -93,9 +99,14 @@ class FoodItemCard extends StatelessWidget {
                   } else {
                     print('i AM HERE 3');
                     final addedCart = cartService.addProduct(
-                        dish!, data['cart'], data['cartList'], userId);
+                        dish!,
+                        data['cart'],
+                        data['cartList'],
+                        data['cartCost'],
+                        userId);
                     print(addedCart);
                     await authService.addToCartInDatabaseWithRestaurant(
+                        addedCart['cartCost'],
                         addedCart['cart'],
                         addedCart['cartList'],
                         userId,

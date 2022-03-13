@@ -40,47 +40,67 @@ class AuthService {
     return data;
   }
 
-  Future<void> increaseQuantity(cart, userId, itemName) {
+  Future<void> increaseQuantity(cart, userId, itemName, dishCost, cartCost) {
+    dishCost = dishCost / cart[itemName];
     cart[itemName] = cart[itemName] + 1;
+
+    cartCost[itemName] = dishCost * cart[itemName];
+
     return usersdatabase
         .doc(userId)
-        .update({'cart': cart})
+        .update({'cart': cart, 'cartCost': cartCost})
         .then((value) => print("User Updated"))
         .catchError((error) => print("Failed to update user: $error"));
   }
 
-  Future<void> addToCartInDatabase(cart, cartList, userId) {
+  Future<void> addToCartInDatabase(cart, cartList, cartCost, userId) {
     return usersdatabase
         .doc(userId)
-        .update({'cart': cart, 'cartList': cartList})
+        .update({'cart': cart, 'cartList': cartList, 'cartCost': cartCost})
         .then((value) => print("User Updated"))
         .catchError((error) => print("Failed to update user: $error"));
   }
 
   Future<void> addToCartInDatabaseWithRestaurant(
-      cart, cartList, userId, restaurantmap) {
+      cartCost, cart, cartList, userId, restaurantmap) {
     return usersdatabase
         .doc(userId)
-        .update(
-            {'cart': cart, 'cartList': cartList, 'restaurant': restaurantmap})
+        .update({
+          'cart': cart,
+          'cartList': cartList,
+          'restaurant': restaurantmap,
+          'cartCost': cartCost
+        })
         .then((value) => print("User Updated"))
         .catchError((error) => print("Failed to update user: $error"));
   }
 
   Future<void> removeFromDatabase(
-      cart, cartList, itemName, userId, restaurant) {
+      cart, cartList, itemName, userId, restaurant, cartCost, dishCost) {
     if (cart[itemName] > 1) {
+      dishCost = dishCost / cart[itemName];
       cart[itemName] = cart[itemName] - 1;
+
+      cartCost[itemName] = dishCost * cart[itemName];
+      print('hello hello hello hello');
+      print(cartCost);
+      print(dishCost);
     } else {
       cartList.remove(itemName);
       cart.remove(itemName);
+      cartCost.remove(itemName);
       if (cartList.length == 0) {
         restaurant = [];
       }
     }
     return usersdatabase
         .doc(userId)
-        .update({'cart': cart, 'cartList': cartList, 'restaurant': restaurant})
+        .update({
+          'cart': cart,
+          'cartList': cartList,
+          'restaurant': restaurant,
+          'cartCost': cartCost
+        })
         .then((value) => print('user updated'))
         .catchError((error) => print('error'));
   }
@@ -97,6 +117,7 @@ class AuthService {
           'name': name,
           'contact': contact,
           'cart': {},
+          'cartCost': {},
           'cartList': [],
           'restaurant': [],
         })

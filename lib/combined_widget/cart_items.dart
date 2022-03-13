@@ -36,6 +36,7 @@ class _CartItemsState extends State<CartItems> {
             return Column(
               children: data['cartList'].map<Widget>((item) {
                 return CartItemCard(
+                  cartCost: data['cartCost'][item],
                   itemName: item,
                   quantity: data['cart'][item],
                 );
