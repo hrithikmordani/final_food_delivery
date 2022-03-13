@@ -24,6 +24,12 @@ class CartScreen extends StatefulWidget {
 }
 
 class _CartScreenState extends State<CartScreen> {
+  var tip20 = false;
+  var tip50 = false;
+  var tip30 = false;
+  num? tipcost = 0;
+  num deliverycost = 60;
+
   @override
   Widget build(BuildContext context) {
     final authService = Provider.of<AuthService>(context);
@@ -118,34 +124,77 @@ class _CartScreenState extends State<CartScreen> {
                                   Row(
                                     children: [
                                       ElevatedButton(
-                                        onPressed: () {},
+                                        onPressed: () {
+                                          setState(() {
+                                            if (tip20 == true) {
+                                              tipcost = 0;
+                                            }
+                                            tip20 = !tip20;
+                                            if (tip20 == true) {
+                                              tipcost = 20;
+                                            }
+
+                                            tip30 = false;
+                                            tip50 = false;
+                                          });
+                                        },
                                         child: Text('20',
                                             style:
                                                 TextStyle(color: Colors.black)),
                                         style: ElevatedButton.styleFrom(
-                                            primary: Colors.white),
+                                            primary: tip20
+                                                ? Colors.yellow
+                                                : Colors.white),
                                       ),
                                       SizedBox(
                                         width: 20,
                                       ),
                                       ElevatedButton(
-                                        onPressed: () {},
+                                        onPressed: () {
+                                          setState(() {
+                                            if (tip30 == true) {
+                                              tipcost = 0;
+                                            }
+                                            tip30 = !tip30;
+                                            if (tip30 == true) {
+                                              tipcost = 30;
+                                            }
+                                            tip50 = false;
+                                            tip20 = false;
+                                          });
+                                        },
                                         child: Text('30',
                                             style:
                                                 TextStyle(color: Colors.black)),
                                         style: ElevatedButton.styleFrom(
-                                            primary: Colors.white),
+                                            primary: tip30
+                                                ? Colors.yellow
+                                                : Colors.white),
                                       ),
                                       SizedBox(
                                         width: 20,
                                       ),
                                       ElevatedButton(
-                                        onPressed: () {},
+                                        onPressed: () {
+                                          setState(() {
+                                            if (tip50 == true) {
+                                              tipcost = 0;
+                                            }
+                                            tip50 = !tip50;
+                                            if (tip50 == true) {
+                                              tipcost = 50;
+                                            }
+                                            tip20 = false;
+                                            tip30 = false;
+                                          });
+                                        },
                                         child: Text('50',
                                             style:
                                                 TextStyle(color: Colors.black)),
                                         style: ElevatedButton.styleFrom(
-                                            primary: Colors.white),
+                                            primary: tip50
+                                                ? Colors.yellow
+                                                : Colors.white),
                                       ),
                                     ],
                                   )
@@ -186,7 +235,10 @@ class _CartScreenState extends State<CartScreen> {
                                         fontSize: 16, color: Colors.grey),
                                   ),
                                   Text(
-                                    'Rs 350',
+                                    data['cartCost']
+                                        .values
+                                        .reduce((sum, element) => sum + element)
+                                        .toString(),
                                     style: TextStyle(
                                         fontSize: 16, color: Colors.grey),
                                   )
@@ -216,7 +268,7 @@ class _CartScreenState extends State<CartScreen> {
                                     ],
                                   ),
                                   Text(
-                                    'Rs 30',
+                                    'Rs 60',
                                     style: TextStyle(
                                         fontSize: 16, color: Colors.grey),
                                   )
@@ -235,7 +287,30 @@ class _CartScreenState extends State<CartScreen> {
                                         fontSize: 16, color: Colors.blue),
                                   ),
                                   Text(
-                                    'Rs 25',
+                                    (0.1 *
+                                            data['cartCost'].values.reduce(
+                                                (sum, element) =>
+                                                    sum + element))
+                                        .toString(),
+                                    style: TextStyle(
+                                        fontSize: 16, color: Colors.grey),
+                                  )
+                                ],
+                              ),
+                              SizedBox(
+                                height: 10,
+                              ),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    'Tip',
+                                    style: TextStyle(
+                                        fontSize: 16, color: Colors.blue),
+                                  ),
+                                  Text(
+                                    'Rs ' + tipcost.toString(),
                                     style: TextStyle(
                                         fontSize: 16, color: Colors.grey),
                                   )
@@ -256,7 +331,16 @@ class _CartScreenState extends State<CartScreen> {
                                         fontWeight: FontWeight.bold),
                                   ),
                                   Text(
-                                    'Rs 405',
+                                    (deliverycost +
+                                            tipcost! +
+                                            (0.1 *
+                                                data['cartCost'].values.reduce(
+                                                    (sum, element) =>
+                                                        sum + element)) +
+                                            data['cartCost'].values.reduce(
+                                                (sum, element) =>
+                                                    sum + element))
+                                        .toString(),
                                     style: TextStyle(
                                         fontSize: 16, color: Colors.grey),
                                   )
