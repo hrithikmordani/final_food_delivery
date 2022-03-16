@@ -6,11 +6,14 @@ import 'package:final_food_delivery/combined_widget/cart_items.dart';
 import 'package:final_food_delivery/constants/colors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import 'package:flutter/widgets.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:final_food_delivery/config/auth_service.dart';
 import 'package:provider/provider.dart';
+import 'package:razorpay_flutter/razorpay_flutter.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class CartScreen extends StatefulWidget {
   static const String routeName = '/cart';
@@ -29,6 +32,10 @@ class _CartScreenState extends State<CartScreen> {
   var tip30 = false;
   num? tipcost = 0;
   num deliverycost = 60;
+
+  static const platform = const MethodChannel("razorpay_flutter");
+
+  late Razorpay _razorpay;
 
   @override
   Widget build(BuildContext context) {
@@ -392,9 +399,7 @@ class _CartScreenState extends State<CartScreen> {
                                     ),
                                     FlatButton(
                                       onPressed: () {
-                                        Navigator.pushNamed(
-                                            context, '/paymentGateway',
-                                            arguments: deliverycost +
+                                        openCheckout((deliverycost +
                                                 tipcost! +
                                                 (0.1 *
                                                     data['cartCost']
@@ -404,8 +409,25 @@ class _CartScreenState extends State<CartScreen> {
                                                             sum + element)) +
                                                 data['cartCost'].values.reduce(
                                                     (sum, element) =>
-                                                        sum + element));
-                                      },
+                                                        sum + element)) *
+                                            100);
+                                      }
+
+                                      //() {
+                                      // Navigator.pushNamed(
+                                      //     context, '/paymentGateway',
+                                      //     arguments: deliverycost +
+                                      //         tipcost! +
+                                      //         (0.1 *
+                                      //             data['cartCost']
+                                      //                 .values
+                                      //                 .reduce((sum,
+                                      //                         element) =>
+                                      //                     sum + element)) +
+                                      //         data['cartCost'].values.reduce(
+                                      //             (sum, element) =>
+                                      //                 sum + element));
+                                      ,
                                       child: Container(
                                         padding: EdgeInsets.all(10),
                                         color: kPrimaryColor,
@@ -439,5 +461,59 @@ class _CartScreenState extends State<CartScreen> {
             ),
           );
         });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _razorpay = Razorpay();
+    _razorpay.on(Razorpay.EVENT_PAYMENT_SUCCESS, _handlePaymentSuccess);
+    _razorpay.on(Razorpay.EVENT_PAYMENT_ERROR, _handlePaymentError);
+    _razorpay.on(Razorpay.EVENT_EXTERNAL_WALLET, _handleExternalWallet);
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _razorpay.clear();
+  }
+
+  void openCheckout(num cost) async {
+    var options = {
+      'key': 'rzp_test_7KeVo5Y4Pm5kuI',
+      'amount': cost,
+      // 'name': 'Acme Corp.',
+      // 'description': 'Fine T-Shirt',
+      'retry': {'enabled': true, 'max_count': 1},
+      'send_sms_hash': true,
+      // 'prefill': {'contact': '8888888888', 'email': 'test@razorpay.com'},
+      'external': {
+        'wallets': ['paytm']
+      }
+    };
+
+    try {
+      _razorpay.open(options);
+    } catch (e) {
+      debugPrint('Error: e');
+    }
+  }
+
+  void _handlePaymentSuccess(PaymentSuccessResponse response) {
+    Fluttertoast.showToast(
+        msg: "SUCCESS: " + response.paymentId!,
+        toastLength: Toast.LENGTH_SHORT);
+  }
+
+  void _handlePaymentError(PaymentFailureResponse response) {
+    Fluttertoast.showToast(
+        msg: "ERROR: " + response.code.toString() + " - " + response.message!,
+        toastLength: Toast.LENGTH_SHORT);
+  }
+
+  void _handleExternalWallet(ExternalWalletResponse response) {
+    Fluttertoast.showToast(
+        msg: "EXTERNAL_WALLET: " + response.walletName!,
+        toastLength: Toast.LENGTH_SHORT);
   }
 }

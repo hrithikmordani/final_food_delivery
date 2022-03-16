@@ -7,7 +7,6 @@ import 'package:final_food_delivery/screens/location_screen.dart';
 
 import 'package:final_food_delivery/screens/new_login_screen.dart';
 import 'package:final_food_delivery/screens/new_registration_screen.dart';
-import 'package:final_food_delivery/screens/payment_gateway.dart';
 import 'package:final_food_delivery/screens/restaurant_dishes.dart';
 import 'package:final_food_delivery/screens/restaurant_screen.dart';
 
@@ -37,8 +36,6 @@ class AppRouter {
       case RestaurantDishes.routeName:
         return RestaurantDishes.route(
             restaurant: settings.arguments as RestaurantModel);
-      case PaymentGateway.routeName:
-        return PaymentGateway.route(cost: settings.arguments as num);
 
       default:
         return _errorRoute();
