@@ -27,12 +27,11 @@ class _RestaurantScreenState extends State<RestaurantScreen> {
   int currentIndex = 0;
   final List<CarouselModel> cards = [
     CarouselModel(
-        price: '\$15',
+        price: '15',
         description: 'Two slices of Pizza with delicious Salami',
-        url:
-            'https://b.zmtcdn.com/data/o2_assets/d0bd7c9405ac87f6aa65e31fe55800941632716575.png'),
+        url: 'https://images7.alphacoders.com/596/thumb-1920-596343.jpg'),
     CarouselModel(
-        price: '\$15',
+        price: '15',
         description: 'Delicious Cheese Pav Bhaji garnished with Onions',
         url:
             'https://i0.wp.com/healthyvegrecipes.com/wp-content/uploads/2016/08/pb1.jpg'),
@@ -71,7 +70,7 @@ class _RestaurantScreenState extends State<RestaurantScreen> {
         location: 'Andheri West, Mumbai',
         cuisine: 'South Indian',
         imageSource:
-            'https://b.zmtcdn.com/data/pictures/6/19719926/359745c22c6a159f70c09ea5df4b874e_o2_featured_v2.jpg?output-format=webp',
+            'https://media.istockphoto.com/photos/masala-dosa-on-banana-leaf-with-both-sambar-and-coconut-chutney-south-picture-id1205482290?k=20&m=1205482290&s=612x612&w=0&h=zXOEuo-Capu4KxFgqJgxp09jYR81uaj6ndaAC7YspjM=',
         dishes: [
           DishModel(
               dishId: '001',

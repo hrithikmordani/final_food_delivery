@@ -391,7 +391,21 @@ class _CartScreenState extends State<CartScreen> {
                                       height: 25,
                                     ),
                                     FlatButton(
-                                      onPressed: () {},
+                                      onPressed: () {
+                                        Navigator.pushNamed(
+                                            context, '/paymentGateway',
+                                            arguments: deliverycost +
+                                                tipcost! +
+                                                (0.1 *
+                                                    data['cartCost']
+                                                        .values
+                                                        .reduce((sum,
+                                                                element) =>
+                                                            sum + element)) +
+                                                data['cartCost'].values.reduce(
+                                                    (sum, element) =>
+                                                        sum + element));
+                                      },
                                       child: Container(
                                         padding: EdgeInsets.all(10),
                                         color: kPrimaryColor,
